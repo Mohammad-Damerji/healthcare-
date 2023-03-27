@@ -24,6 +24,7 @@ SECRET_KEY = 'django-insecure-oen_p!xn-jb#tnkx4%5m!x+kz7ww@p)q-jv!daxim4wi9@9c7=
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CSRF_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = []
 
@@ -61,6 +62,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        'rest_framework.authentication.BasicAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES": "rest_framework.permissions.IsAuthenticated",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
