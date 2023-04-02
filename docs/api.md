@@ -38,6 +38,7 @@ Response
 }
 ```
 
+
 ## Get users
 `GET api/users/list`
 **Auth: basic**
