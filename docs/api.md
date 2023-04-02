@@ -58,7 +58,7 @@ Response:
 
 ## Send disease features
 
-`GET api/health/predict`
+`POST api/health/predict`
 **Auth: basic**
 ```ts
 {
