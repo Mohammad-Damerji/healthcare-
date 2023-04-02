@@ -10,6 +10,7 @@ clean-frontend:
 clean: clean-backend clean-frontend
 
 serve:
+	cd frontend && npm install
 	cd frontend && ng serve
 
 .PHONY: backend
