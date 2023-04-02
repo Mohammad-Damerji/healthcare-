@@ -2,12 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
-interface UserLogin {
+/*
+INTERFACES
+*/
+export type ApiFun = (_: ApiInput) => Observable<ApiResponse>
+export type ApiInput = ApiLogin
+export interface ApiLogin {
   username: string,
   password: string
 }
 
+export type ApiResponse = RespLogin
+export interface RespLogin {
+  success: boolean
+  message: string
+}
 
+
+/*
+IMPLEMENTATION
+*/
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +29,7 @@ export class RestAPIService {
 
   constructor(private http: HttpClient) { }
 
-  public login(data: UserLogin): Observable<any> {
+  public login(data: ApiLogin): Observable<RespLogin> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     
@@ -26,7 +40,7 @@ export class RestAPIService {
       {
         headers: headers
       }
-    )
+    ) as Observable<RespLogin>
     
   }
 }
