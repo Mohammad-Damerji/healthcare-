@@ -49,12 +49,22 @@ def convert_data(gender, age, hypertension, heart_disease, Residence_type, avg_g
 ######################################################
 
 
-def stroke_model(gender, age, hypertension, heart_disease, Residence_type, avg_glucose_level, bmi, smoking_status):
+def stroke_model(user_info):
+
+    gender = user_info["gender"]
+    age = user_info["age"]
+    hypertension = user_info["hypertension"]
+    heart_disease = user_info["heart_disease"]
+    Residence_type = user_info["Residence_type"]
+    avg_glucose_level = user_info["avg_glucose_level"]
+    bmi = user_info["bmi"]
+    smoking_status = user_info["smoking_status"]
 
     data = convert_data(gender, age, hypertension, heart_disease,
                         Residence_type, avg_glucose_level, bmi, smoking_status)
 
-    stroke_model_LR = pickle.load(open("stroke_model_LR.sav", 'rb'))
+    stroke_model_LR = pickle.load(
+        open("healthcare\models\Stroke\stroke_model_LR.sav", 'rb'))
     # result = stroke_model_LR.predict([data])
     probability = stroke_model_LR.predict_proba([data])
 
@@ -63,5 +73,5 @@ def stroke_model(gender, age, hypertension, heart_disease, Residence_type, avg_g
 ####################################################
 
 
-stroke_model(gender="Male", age=67, hypertension="No", heart_disease="Yes",
-             Residence_type="Yes", avg_glucose_level=228.69, bmi=36.6, smoking_status="formerly smoked")
+stroke_model(user_info={"gender": "Male", "age": 67, "hypertension": "No", "heart_disease": "Yes",
+             "Residence_type": "Yes", "avg_glucose_level": 228.69, "bmi": 36.6, "smoking_status": "formerly smoked"})
