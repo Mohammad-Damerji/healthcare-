@@ -40,6 +40,8 @@ Response
 
 
 ## Get users
+
+
 `GET api/users/list`
 **Auth: basic**
 **NO BODY**
@@ -63,7 +65,14 @@ Response:
 **Auth: basic**
 ```ts
 {
-   gender: "male" | "female"
+   gender: "Male" | "Female" | "Other",
+   age: number,
+   hypertension: boolean,
+   heart_disease: boolean,
+   Residence_type: "Urban" | "Rural",
+   avg_glucose_level: number,
+   bmi: numver,
+   smoking_status: "formerly smoked" | "never smoked" | "smokes" | "Unknown"
 }
 ```
 
