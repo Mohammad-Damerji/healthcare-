@@ -8,7 +8,7 @@ class Profile(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
     ]
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES, null=True)
     phone_number = models.CharField(max_length=12, unique=True)
     birth_date = models.DateField(null=True, blank=True)
 
