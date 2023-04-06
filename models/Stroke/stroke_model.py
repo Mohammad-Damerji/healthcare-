@@ -43,7 +43,7 @@ def convert_data(gender, age, hypertension, heart_disease, Residence_type, avg_g
     elif smoking_status == "smokes":
         data.append(3)
     else:
-        data.append(4)
+        data.append(0)
 
     return data
 ######################################################
@@ -65,13 +65,14 @@ def stroke_model(user_info):
 
     stroke_model_LR = pickle.load(
         open("healthcare\models\Stroke\stroke_model_LR.sav", 'rb'))
-    # result = stroke_model_LR.predict([data])
     probability = stroke_model_LR.predict_proba([data])
 
-    print(
-        f"There is an {probability[0][1]:.0%} chance that you will have a stroke.")
+    # print(
+    #     f"There is an {probability[0][1]:.0%} chance that you will have a stroke.")
+    return "{0:.0%}".format(probability[0][1])
 ####################################################
 
 
-stroke_model(user_info={"gender": "Male", "age": 67, "hypertension": "No", "heart_disease": "Yes",
-             "Residence_type": "Yes", "avg_glucose_level": 228.69, "bmi": 36.6, "smoking_status": "formerly smoked"})
+result = stroke_model(user_info={"gender": "Male", "age": 67, "hypertension": "No", "heart_disease": "Yes",
+                                 "Residence_type": "Yes", "avg_glucose_level": 228.69, "bmi": 36.6, "smoking_status": "formerly smoked"})
+print(result)
