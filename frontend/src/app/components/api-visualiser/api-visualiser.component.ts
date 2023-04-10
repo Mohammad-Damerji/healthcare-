@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RestAPIService } from 'src/app/services/rest-api.service';
+import { ApiFun, ApiInput, RestAPIService } from 'src/app/services/rest-api.service';
 
 interface APITest {
   name: string,
@@ -32,6 +32,17 @@ export class ApiVisualiserComponent {
 
   stringify(param: any) {
     return JSON.stringify(param)
+  }
+
+  testCase(name: string, fun: ApiFun, input: ApiInput) {
+    fun(input).subscribe(e => {     
+      let first: APITest = {
+        name: name,
+        input: input,
+        result: this.stringify(e)
+      }
+      this.tests.push(first)
+    })
   }
 }
 

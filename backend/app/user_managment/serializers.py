@@ -1,48 +1,25 @@
-# from rest_framework import serializers
-# from rest_framework.authtoken.models import Token
-# from rest_framework.validators import ValidationError
-#
-# from .models import User
-#
-#
-# class SignUpSerializer(serializers.ModelSerializer):
-#     email = serializers.CharField(max_length=80)
-#     username = serializers.CharField(max_length=45)
-#     password = serializers.CharField(min_length=8, write_only=True)
-#
-#     class Meta:
-#         model = User
-#         fields = ["email", "username", "password"]
-#
-#     def validate(self, attrs):
-#
-#         email_exists = User.objects.filter(email=attrs["email"]).exists()
-#
-#         if email_exists:
-#             raise ValidationError("Email has already been used")
-#
-#         return super().validate(attrs)
-#
-#     def create(self, validated_data):
-#         password = validated_data.pop("password")
-#
-#         user = super().create(validated_data)
-#
-#         user.set_password(password)
-#         print('password', password)
-#
-#         user.save()
-#
-#         # Token.objects.create(user=user)
-#
-#         return user
-#
-#
-# class CurrentUserPostsSerializer(serializers.ModelSerializer):
-#     posts = serializers.HyperlinkedRelatedField(
-#         many=True, view_name="post_detail", queryset=User.objects.all()
-#     )
-#
-#     class Meta:
-#         model = User
-#         fields = ["id", "username", "email", "posts"]
+from django.core.validators import RegexValidator
+from rest_framework import serializers
+from .models import Profile
+
+from rest_framework import serializers
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username']
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    phone_regex = RegexValidator(
+        regex=r'^\+36\d{9}$',
+        message="Phone number must be entered in the format: '+36XXXXXXXXX'."
+    )
+
+    phone_number = serializers.CharField(validators=[phone_regex], required=True, max_length=12)
+
+    class Meta:
+        model = Profile
+        fields = ('gender', 'phone_number', 'birth_date')
