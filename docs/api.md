@@ -71,7 +71,7 @@ Response:
    heart_disease: boolean,
    Residence_type: "Urban" | "Rural",
    avg_glucose_level: number,
-   bmi: numver,
+   bmi: number,
    smoking_status: "formerly smoked" | "never smoked" | "smokes" | "Unknown"
 }
 ```
@@ -79,6 +79,7 @@ Response:
 Response:
 ```ts
 {
-    success: boolean
+    success: boolean,
+    percentage: number
 } 
 ```
