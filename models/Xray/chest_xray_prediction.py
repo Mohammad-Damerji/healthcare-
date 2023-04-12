@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
-
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -35,9 +32,6 @@ from tensorflow.keras import optimizers, losses, metrics
 from tensorflow.compat.v1.logging import INFO, set_verbosity
 
 
-# In[7]:
-
-
 labels = ['Cardiomegaly', 
           'Emphysema', 
           'Effusion', 
@@ -53,14 +47,7 @@ labels = ['Cardiomegaly',
           'Edema', 
           'Consolidation']
 
-
-# In[9]:
-
-
 model = load_model('xray_model.h5')
-
-
-# In[10]:
 
 
 def diag_list(predicted_values):
@@ -82,3 +69,4 @@ def disease_probability(chestxray_input_folder="xray_image", model=model):
     pred = (model.predict(test_datagen, verbose = 1))
     return diag_list(pred[0])
 
+##results will be in the form [(top probability, top disease),(2nd prob, 2nd disease), (3rd prob, 3rd disease)]
