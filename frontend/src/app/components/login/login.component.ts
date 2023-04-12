@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiLogin, RestAPIService } from 'src/app/services/rest-api.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,11 @@ export class LoginComponent implements OnInit {
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
   loginForm!: FormGroup;
+  waiting = false;
+  alert: string | undefined
+  success: string | undefined
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private api: RestAPIService, private userSrv: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -27,12 +33,44 @@ export class LoginComponent implements OnInit {
     this.isText ? this.type = "text" : this.type = "password";
   }
 
+  private setSpinner() {
+    this.waiting = true;
+    this.loginForm.get('username')?.disable()
+    this.loginForm.get('password')?.disable()
+  }
+
+  private unsetSpinner() {
+    this.waiting = false;
+    this.loginForm.get('username')?.enable()
+    this.loginForm.get('password')?.enable()
+  }
+
   onSubmit(){
     if(this.loginForm.valid){
       console.log(this.loginForm.value)
+      this.setSpinner()
+      this.api.login(this.loginForm.value).subscribe(e => {
+        console.log(e)
+        if (e.success) {
+          this.unsetSpinner()
+          this.success = e.message
+          this.alert = undefined
+          this.userSrv.setUser(this.loginForm.value)
+          this.router.navigate(['welcome'])
+
+        }
+        else {
+          this.unsetSpinner()
+          this.alert = e.message
+          this.success = undefined
+        }
+        
+      });
+      
+      
     }else
     {
-      alert("form is vaild")
+      alert("form is not vaild")
       this.validateAllFormFilds(this.loginForm);
     }
 

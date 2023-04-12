@@ -1,6 +1,8 @@
 <p>api-visualiser works!</p>
-<div *ngFor="let test of tests;">
-    <h1>{{test.name}}</h1>
+<h1>start</h1>
+<div *ngFor="let test of tests">
+    <h3>{{test.name}}</h3>
     <pre>{{stringify(test.input)}}</pre>
     <pre>{{test.result}}</pre>
 </div>
+<h1>end</h1>

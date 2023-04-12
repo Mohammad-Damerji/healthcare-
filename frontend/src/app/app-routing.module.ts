@@ -4,6 +4,7 @@ import { ApiVisualiserComponent } from './components/api-visualiser/api-visualis
 import { BlogComponent } from './components/blog/blog.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path:"apis",
     component: ApiVisualiserComponent
+  },
+
+  {
+    path:"welcome",
+    component: UserWelcomeComponent
   }
 ];
 

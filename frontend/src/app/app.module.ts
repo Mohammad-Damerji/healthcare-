@@ -9,6 +9,9 @@ import { HomeComponent } from './components/home/home.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiVisualiserComponent } from './components/api-visualiser/api-visualiser.component';
+import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     HomeComponent,
     BlogComponent,
-    LoginComponent
+    LoginComponent,
+    ApiVisualiserComponent,
+    UserWelcomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
