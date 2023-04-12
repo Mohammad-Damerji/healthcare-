@@ -23,4 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: cd frontend && npm ci
+        
+      - name: Node version
+        run: cd frontend && ng version
 
