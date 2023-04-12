@@ -1,5 +1,6 @@
 import pickle
 import warnings
+import os
 warnings.filterwarnings('ignore')
 ###################################################
 
@@ -55,9 +56,11 @@ def heart_model(user_info):
 
     data = convert_data(Age, Sex, ChestPainType,
                         RestingBP, FastingBS, RestingECG)
+    script_dir = os.path.dirname(os.path.relpath(__file__))
+    model_file = os.path.join(script_dir, 'HeartDisease_model_LR.sav')
 
     HeartDisease_model_LR = pickle.load(
-        open("healthcare\models\Heart\HeartDisease_model_LR.sav", 'rb'))
+        open(model_file, 'rb'))
     probability = HeartDisease_model_LR.predict_proba([data])
 
     # print(

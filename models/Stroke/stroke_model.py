@@ -1,11 +1,14 @@
 import pickle
 import warnings
+import os
+
 warnings.filterwarnings('ignore')
+
+
 ###################################################
 
 
 def convert_data(gender, age, hypertension, heart_disease, Residence_type, avg_glucose_level, bmi, smoking_status):
-
     data = []
     # gender
     if gender == "Male":
@@ -46,11 +49,12 @@ def convert_data(gender, age, hypertension, heart_disease, Residence_type, avg_g
         data.append(0)
 
     return data
+
+
 ######################################################
 
 
 def stroke_model(user_info):
-
     gender = user_info["gender"]
     age = user_info["age"]
     hypertension = user_info["hypertension"]
@@ -63,16 +67,21 @@ def stroke_model(user_info):
     data = convert_data(gender, age, hypertension, heart_disease,
                         Residence_type, avg_glucose_level, bmi, smoking_status)
 
+    script_dir = os.path.dirname(os.path.relpath(__file__))
+    model_file = os.path.join(script_dir, 'stroke_model_LR.sav')
     stroke_model_LR = pickle.load(
-        open("healthcare\models\Stroke\stroke_model_LR.sav", 'rb'))
+        open(model_file, 'rb'))
     probability = stroke_model_LR.predict_proba([data])
 
     # print(
     #     f"There is an {probability[0][1]:.0%} chance that you will have a stroke.")
     return "{0:.0%}".format(probability[0][1])
+
+
 ####################################################
 
 
 result = stroke_model(user_info={"gender": "Male", "age": 67, "hypertension": "No", "heart_disease": "Yes",
-                                 "Residence_type": "Yes", "avg_glucose_level": 228.69, "bmi": 36.6, "smoking_status": "formerly smoked"})
+                                 "Residence_type": "Yes", "avg_glucose_level": 228.69, "bmi": 36.6,
+                                 "smoking_status": "formerly smoked"})
 print(result)
