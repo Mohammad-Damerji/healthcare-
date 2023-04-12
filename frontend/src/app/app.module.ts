@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiVisualiserComponent } from './components/api-visualiser/api-visualiser.component';
+import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ApiVisualiserComponent } from './components/api-visualiser/api-visualis
     HomeComponent,
     BlogComponent,
     LoginComponent,
-    ApiVisualiserComponent
+    ApiVisualiserComponent,
+    UserWelcomeComponent
   ],
   imports: [
     BrowserModule,

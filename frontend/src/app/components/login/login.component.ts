@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiLogin, RestAPIService } from 'src/app/services/rest-api.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   alert: string | undefined
   success: string | undefined
 
-  constructor(private fb: FormBuilder, private api: RestAPIService, private userSrv: UserService) { }
+  constructor(private fb: FormBuilder, private api: RestAPIService, private userSrv: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
           this.success = e.message
           this.alert = undefined
           this.userSrv.setUser(this.loginForm.value)
+          this.router.navigate(['welcome'])
 
         }
         else {
