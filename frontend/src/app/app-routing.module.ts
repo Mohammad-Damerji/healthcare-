@@ -28,7 +28,7 @@ const routes: Routes = [
   },
 
   {
-    path:"welcome",
+    path:"user-welcome",
     component: UserWelcomeComponent
   }
 ];
