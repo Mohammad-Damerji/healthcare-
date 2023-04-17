@@ -15,6 +15,14 @@
             <a class="nav-link" aria-current="page" href="/contact.html">Contact</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#" [routerLink]="['/form']">Form Prediction</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/" [routerLink]="['/image']">Image Prediction</a>
+          </li>
+
         </ul>
         <button type="button" class="btn btn-dark me-2" [routerLink]="['/login']" *ngIf="!userSrv.isLoggedIn()">Login</button>
         <button type="button" class="btn btn-dark me-2" [routerLink]="['/login']" *ngIf="userSrv.isLoggedIn()" disabled>{{currentUser()}}</button>
