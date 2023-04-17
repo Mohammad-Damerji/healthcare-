@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiVisualiserComponent } from './components/api-visualiser/api-visualiser.component';
 import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
 import { ImagePredictionComponent } from './components/image-prediction/image-prediction.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ImagePredictionComponent } from './components/image-prediction/image-pr
     LoginComponent,
     ApiVisualiserComponent,
     UserWelcomeComponent,
-    ImagePredictionComponent
+    ImagePredictionComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
