@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImagePredictionComponent } from './image-prediction.component';
+import { ImagePredictionComponent } from  './image-prediction.component';
 
 describe('ImagePredictionComponent', () => {
   let component: ImagePredictionComponent;
