@@ -16,9 +16,9 @@
                       </div>    
                     <div class="panel-body p-3">
                        
-                        <form>
+                        <form [formGroup]="disease" (ngSubmit)="onSubmit(disease)">
 
-                            <select class="form-select border-success" aria-label="Gender" id="gender">
+                            <select class="form-select border-success" aria-label="Gender" id="gender" formControlName="gender">
                                 <option selected>Select your gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -28,7 +28,7 @@
 
                               <div class="mb-4">
                                 <label for="exampleFormControlInput1" class="form-label"> </label>
-                                <input type="number" class="form-control border-success" id="age"  name="age" min="0" max="100" step="1" placeholder="Age">
+                                <input type="number" class="form-control border-success" id="age"  name="age" min="0" max="100" step="1" placeholder="Age" formControlName="age">
                               </div>
                         
                               <div class="mb-4"> 
