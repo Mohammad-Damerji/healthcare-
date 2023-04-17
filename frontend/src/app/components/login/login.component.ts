@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+    if (this.userSrv.isLoggedIn()) {
+      this.router.navigate(['welcome'])
+    }
   }
 
   hideShowPass() {
