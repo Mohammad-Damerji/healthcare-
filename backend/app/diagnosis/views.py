@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from healthcare.backend.app.utils.response_maker import make_response
 
 from healthcare.models.Stroke.stroke_model import stroke_model
+from healthcare.models.Xray.chest_xray_prediction import disease_probability
 from healthcare.models.Heart.heart_model import heart_model
 import os
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -98,11 +99,19 @@ def predict_heart(request, ):
 @permission_classes([IsAuthenticated])
 @parser_classes((MultiPartParser, FormParser))
 def predict_xray(request):
-    file = request.FILES['image']
+    file = request.FILES.get('image')
+    if not file:
+        return Response(make_response(success=False, message="Please upload Xray image"))
     filename = file.name
     script_dir = os.path.dirname(os.path.relpath(__file__))
-    model_file = os.path.join(script_dir, '..', '..', '..', 'models', 'Xray', 'xray_image', 'images', filename)
-    with open(model_file, 'wb+') as destination:
+    image_path = os.path.join(script_dir, '..', '..', '..', 'models', 'Xray', 'xray_image', 'images', filename)
+    with open(image_path, 'wb+') as destination:
         for chunk in file.chunks():
             destination.write(chunk)
-    return Response(make_response(success=True, message='File uploaded successfully.'))
+    data = disease_probability()
+    os.remove(image_path)
+    message = f'You probably have:\n'
+    message += f'{data[0][1]} with probability {data[0][0]:.2f}\n'
+    message += f'Or {data[1][1]} with probability {data[1][0]:.2f}\n'
+    message += f'Or {data[2][1]} with probability {data[2][0]:.2f}\n'
+    return Response(make_response(success=True, message=message, data=data))
