@@ -5,3 +5,4 @@ dnspython
 django-cors-headers
 djangorestframework-simplejwt
 scikit-learn
+Pillow
