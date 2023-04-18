@@ -1,11 +1,13 @@
 from rest_framework.authentication import BasicAuthentication
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes, parser_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from healthcare.backend.app.utils.response_maker import make_response
 
 from healthcare.models.Stroke.stroke_model import stroke_model
 from healthcare.models.Heart.heart_model import heart_model
+import os
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 @api_view(['GET'])
@@ -89,3 +91,18 @@ def predict_heart(request, ):
     return Response(
         make_response(True, message=f"There is {result} chance that would be diagnosed to have heart disease.",
                       data=result))
+
+
+@api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
+@parser_classes((MultiPartParser, FormParser))
+def predict_xray(request):
+    file = request.FILES['image']
+    filename = file.name
+    script_dir = os.path.dirname(os.path.relpath(__file__))
+    model_file = os.path.join(script_dir, '..', '..', '..', 'models', 'Xray', 'xray_image', 'images', filename)
+    with open(model_file, 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
+    return Response(make_response(success=True, message='File uploaded successfully.'))
