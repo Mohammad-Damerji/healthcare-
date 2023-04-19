@@ -2,7 +2,7 @@ from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes, parser_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from healthcare.backend.app.utils.response_maker import make_response
+from utils.response_maker import make_response
 
 from healthcare.models.Stroke.stroke_model import stroke_model
 from healthcare.models.Xray.chest_xray_prediction import disease_probability

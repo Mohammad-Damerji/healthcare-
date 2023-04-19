@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,18 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderComponent {
+
+  currentUser(): string {
+    const user = this.userSrv.getUser()
+    if (user) {
+      return user.username
+    }
+    else {
+      return ""
+    }
+  }
+
+  constructor (public userSrv: UserService) {}
 
 }
 
