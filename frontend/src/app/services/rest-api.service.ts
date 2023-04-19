@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 /*
 INTERFACES
@@ -41,30 +41,25 @@ IMPLEMENTATION
   providedIn: 'root'
 })
 export class RestAPIService {
-  private jsonHeaders = new HttpHeaders({'Content-Type': 'application/json'})
-  private path = "http://localhost:8000/api/"
+  private jsonHeaders: HttpHeaders
+  private path = "http://localhost:8000/auth/"
 
-  constructor(private http: HttpClient) { }
-
-  private handleError<T>(error: HttpErrorResponse) {
-    return new Observable<T>((subscriber) => {
-      subscriber.next(error.error)
-      subscriber.complete()
-    })
+  constructor(private http: HttpClient) {
+    this.jsonHeaders = new HttpHeaders()
+    this.jsonHeaders.set('Content-Type', 'application/json; charset=utf-8');
   }
 
   private postJson(data: ApiInput, request: string): Observable<ApiResponse> {
-    const postPath = this.path + request
-    const body = JSON.stringify(data);
-    const options ={
-      headers: this.jsonHeaders
-    }
-
-    return this.http.post<ApiResponse>(postPath, body, options).pipe(catchError(this.handleError<ApiResponse>))  
+    return this.http.post(this.path + request,
+      JSON.stringify(data),
+      {
+        headers: this.jsonHeaders
+      }
+    ) as Observable<ApiResponse>
   }
 
   public login(data: ApiLogin): Observable<RespLogin> {   
-    return this.postJson(data, "auth/login/") as Observable<RespLogin>
+    return this.postJson(data, "login/") as Observable<RespLogin>
   }
 
   public predict(data: ApiPredict): Observable<RespPredict> {

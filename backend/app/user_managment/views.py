@@ -16,7 +16,7 @@ from django.contrib.auth.models import User
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
-from utils.response_maker import make_response
+from healthcare.backend.app.utils.response_maker import make_response
 
 
 class SignUpView(generics.GenericAPIView):

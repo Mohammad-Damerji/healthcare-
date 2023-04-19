@@ -15,10 +15,11 @@
             <a class="nav-link" aria-current="page" href="/contact.html">Contact</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#" [routerLink]="['/apis']">!! API TEST !!</a>
+          </li>
         </ul>
-        <button type="button" class="btn btn-dark me-2" [routerLink]="['/login']" *ngIf="!userSrv.isLoggedIn()">Login</button>
-        <button type="button" class="btn btn-dark me-2" [routerLink]="['/login']" *ngIf="userSrv.isLoggedIn()" disabled>{{currentUser()}}</button>
-        
+        <button type="button" class="btn btn-dark me-2" [routerLink]="['/login']">Login</button>
         <div class="dropdown text-end ms-2">
             <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="assets/images/profile.png" alt="mdo" width="32" height="32" class="rounded-circle">

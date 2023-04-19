@@ -20,7 +20,3 @@ backend:
 	cd backend/app && python3 manage.py makemigrations
 	cd backend/app && python3 manage.py migrate
 	cd backend/app && python3 manage.py runserver
-
-conn-check:
-	nc -z localhost 8000
-	nc -z localhost 4200
