@@ -9,8 +9,8 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class DiseaseSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(many=True)
+    # tags = TagSerializer(many=True)
 
     class Meta:
         model = Disease
-        fields = ('id', 'name', 'description', 'tags', 'images')
+        fields = ('id', 'name', 'description', 'image')

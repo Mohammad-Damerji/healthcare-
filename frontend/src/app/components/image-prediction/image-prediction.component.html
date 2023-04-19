@@ -1,0 +1,26 @@
+
+<div class="outer">
+    <div class="continar">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class=" mb-4 border-bottom border-success" style="margin-top: 25px; margin-left: 20px;">
+                        <label for="hypertension">Please upload the photo: </label>  
+                      </div>    
+                    <div class="panel-body p-3">
+                       
+                      <form [formGroup]='uploadForm'>
+                          <img [src]="url" height="300"><br>
+                          <input type="file" class="my-file-input"  (change)="onselectFile($event)">
+                      </form>
+  
+  
+                    </div>
+                </div>
+  
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  

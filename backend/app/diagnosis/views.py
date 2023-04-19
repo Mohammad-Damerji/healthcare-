@@ -1,14 +1,20 @@
+import datetime
+import re
+
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes, parser_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from healthcare.backend.app.utils.response_maker import make_response
+from utils.response_maker import make_response
 
+from .models import Disease
+from .serializers import DiseaseSerializer
 from healthcare.models.Stroke.stroke_model import stroke_model
 from healthcare.models.Xray.chest_xray_prediction import disease_probability
 from healthcare.models.Heart.heart_model import heart_model
 import os
 from rest_framework.parsers import MultiPartParser, FormParser
+import base64
 
 
 @api_view(['GET'])
@@ -94,20 +100,33 @@ def predict_heart(request, ):
                       data=result))
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 @authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
-@parser_classes((MultiPartParser, FormParser))
+# @parser_classes((MultiPartParser, FormParser))
 def predict_xray(request):
-    file = request.FILES.get('image')
-    if not file:
+    # file = request.FILES.get('image')
+    # if not file:
+    #     return Response(make_response(success=False, message="Please upload Xray image"))
+    # filename = file.name
+    # script_dir = os.path.dirname(os.path.relpath(__file__))
+    # image_path = os.path.join(script_dir, '..', '..', '..', 'models', 'Xray', 'xray_image', 'images', filename)
+    # with open(image_path, 'wb+') as destination:
+    #     for chunk in file.chunks():
+    #         destination.write(chunk)
+
+    image_base = request.data.get('image')
+    print(request.data)
+    if not image_base:
         return Response(make_response(success=False, message="Please upload Xray image"))
-    filename = file.name
+    binary = base64.b64decode(image_base.split(",")[-1])
+    file_extension = re.search(r"data:image/(\w+);", image_base).group(1)
+
+    filename = f"temp{datetime.datetime.now().microsecond}.{file_extension}"
     script_dir = os.path.dirname(os.path.relpath(__file__))
     image_path = os.path.join(script_dir, '..', '..', '..', 'models', 'Xray', 'xray_image', 'images', filename)
-    with open(image_path, 'wb+') as destination:
-        for chunk in file.chunks():
-            destination.write(chunk)
+    with open(image_path, "wb") as f:
+        f.write(binary)
     data = disease_probability()
     os.remove(image_path)
     message = f'You probably have:\n'
@@ -115,3 +134,11 @@ def predict_xray(request):
     message += f'Or {data[1][1]} with probability {data[1][0]:.2f}\n'
     message += f'Or {data[2][1]} with probability {data[2][0]:.2f}\n'
     return Response(make_response(success=True, message=message, data=data))
+
+@api_view(['GET'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def get_diseases(request):
+    data = Disease.objects.all()
+    serializer = DiseaseSerializer(data, many=True)
+    return Response(data=make_response(success=True, data=serializer.data))
