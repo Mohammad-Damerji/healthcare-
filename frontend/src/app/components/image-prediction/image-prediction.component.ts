@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-image-prediction',
@@ -6,15 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./image-prediction.component.css']
 })
 export class ImagePredictionComponent {
+  uploadForm!: FormGroup;
 
-  handleUpload(event: any) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        console.log(reader.result);
-        (document.getElementById("base64-img") as HTMLImageElement).src = (reader.result as string)
-    };
+  constructor(){
+
+  }
+
+  ngOnInit(){
+
+  }
+  url="./assets/images/upload.png";
+
+  onselectFile(e: any){
+    if(e.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=(event:any)=>{
+      this.url=event.target.result;
+      }
+    }
+  }
 }
 
-}
