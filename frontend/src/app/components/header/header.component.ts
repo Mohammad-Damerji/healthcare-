@@ -21,6 +21,10 @@ export class HeaderComponent {
 
   constructor (public userSrv: UserService) {}
 
+  logoutUser() {
+    this.userSrv.logoutUser()
+  }
+
 }
 
 

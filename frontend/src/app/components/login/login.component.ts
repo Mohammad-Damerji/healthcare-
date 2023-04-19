@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+    if (this.userSrv.isLoggedIn()) {
+      this.router.navigate(['user-welcome'])
+    }
   }
 
   hideShowPass() {
@@ -56,7 +59,7 @@ export class LoginComponent implements OnInit {
           this.success = e.message
           this.alert = undefined
           this.userSrv.setUser(this.loginForm.value)
-          this.router.navigate(['welcome'])
+          this.router.navigate(['user-welcome'])
 
         }
         else {
