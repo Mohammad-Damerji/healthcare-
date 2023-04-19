@@ -25,6 +25,10 @@ export class HeaderComponent {
     this.userSrv.logoutUser()
   }
 
+  isLoggedIn() {
+    return this.userSrv.isLoggedIn()
+  }
+
 }
 
 
