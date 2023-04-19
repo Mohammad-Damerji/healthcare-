@@ -9,16 +9,6 @@
     margin-bottom: 10px;
 }
 
-#forget{
-    min-width: 100px;
-    margin-left: auto;
-    text-decoration: none;
-    cursor: pointer;
-}
-a:hover{
-    text-decoration: none;
-}
-
 .form-inline label{
     padding-left: 10px;
     margin: 0;
@@ -36,41 +26,18 @@ a:hover{
     border-radius: 12px;
     margin-top: 50px;
     margin-bottom: 50px;
- 
-    
 }
 
-.input-field{
-border-radius: 5px;
-padding: 5px;
-display: flex;
-align-items: center;
-cursor: pointer;
-border: 1px solid #ddd;
-color: #4343ff;
-
-}
-
-.input-field.erro{
-border: 1px solid red;
-color: red;
-
-}
-
-input[type='text']{
-    border: none;
-    outline: none;
-    box-shadow: none;
-    width: 100%;
+.my-file-input::-webkit-file-upload-button {
+    background-color: #1d79ea;
+    color: white;
+    padding: 5x;
+    border-radius: 2px;
+    cursor: pointer;
 }
 
 
 
 
-img{
-    width: 40px;
-    height:40px;
-    object-fit: cover;
-    border-radius: 50%;
-    position: relative;
-}
+
+
