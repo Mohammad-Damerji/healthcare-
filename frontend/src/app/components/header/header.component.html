@@ -16,11 +16,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#" [routerLink]="['/form']">Form Prediction</a>
+            <a class="nav-link" aria-current="page" href="#" [routerLink]="['/form']" *ngIf="isLoggedIn()">Form Prediction</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/" [routerLink]="['/image']">Image Prediction</a>
+            <a class="nav-link" aria-current="page" href="/" [routerLink]="['/image']" *ngIf="isLoggedIn()">Image Prediction</a>
           </li>
 
         </ul>
