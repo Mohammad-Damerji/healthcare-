@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -9,7 +11,11 @@ export class FormComponent implements OnInit {
   formForm!: FormGroup;
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userSrv: UserService, private router: Router) { 
+    if (!userSrv.isLoggedIn()) {
+      this.router.navigate([''])
+    }
+  }
 
   ngOnInit(): void {
     this.formForm = this.fb.group({
