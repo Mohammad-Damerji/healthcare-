@@ -58,7 +58,7 @@ def diag_list(predicted_values):
 
     return sorted(zip(predicted_values, labels), reverse=True)[:3]
 
-
+# use relative path
 default_folder = os.path.join(script_dir, 'xray_image')
 
 

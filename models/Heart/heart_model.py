@@ -56,6 +56,7 @@ def heart_model(user_info):
 
     data = convert_data(Age, Sex, ChestPainType,
                         RestingBP, FastingBS, RestingECG)
+    # use relative path
     script_dir = os.path.dirname(os.path.relpath(__file__))
     model_file = os.path.join(script_dir, 'HeartDisease_model_LR.sav')
 

@@ -66,7 +66,7 @@ def stroke_model(user_info):
 
     data = convert_data(gender, age, hypertension, heart_disease,
                         Residence_type, avg_glucose_level, bmi, smoking_status)
-
+    # use relative path
     script_dir = os.path.dirname(os.path.relpath(__file__))
     model_file = os.path.join(script_dir, 'stroke_model_LR.sav')
     stroke_model_LR = pickle.load(
