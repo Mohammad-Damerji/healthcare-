@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-image-prediction',
@@ -9,8 +11,10 @@ import { FormGroup } from '@angular/forms';
 export class ImagePredictionComponent {
   uploadForm!: FormGroup;
 
-  constructor(){
-
+  constructor(private userSrv: UserService, private router: Router) { 
+    if (!userSrv.isLoggedIn()) {
+      this.router.navigate([''])
+    }
   }
 
   ngOnInit(){
