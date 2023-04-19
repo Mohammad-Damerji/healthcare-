@@ -10,8 +10,8 @@
                     <div class="panel-body p-3">
                        
                       <form [formGroup]='uploadForm'>
-                          <img [src]="url" height="200"><br>
-                          <input type="file" (change)="onselectFile($event)">
+                          <img [src]="url" height="300"><br>
+                          <input type="file" class="my-file-input"  (change)="onselectFile($event)">
                       </form>
   
   
