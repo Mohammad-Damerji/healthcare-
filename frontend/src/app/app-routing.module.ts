@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ImagePredictionComponent } from './components/image-prediction/image-prediction.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path:"login",
     component:LoginComponent
+  },
+  {
+    path:"signup",
+    component:SignupComponent
   },
 
   {

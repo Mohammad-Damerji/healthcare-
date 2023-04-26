@@ -6,3 +6,31 @@
     height: 100vh;
     width: 100vw;
 }
+@font-face {
+    font-family: '20db';
+    src: url('src/assets/Fonts/ranchers/Ranchers-Regular.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Regular';
+    src: url('src/assets/Fonts/Molot/Molot.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  h2 {
+    margin-left: 20px;
+    font-family: 'Regular', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  h1 {
+    font-family: '20db',sans-serif;
+    font-size: 4em;
+    line-height: 2;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }

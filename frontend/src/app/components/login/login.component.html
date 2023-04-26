@@ -1,56 +1,35 @@
 <div class="outer">
-    <div class="spanner" [class.visible]="waiting">
-        <div class="spinner-container">
-            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only sp">Loading...</span>
-            </div>
-        </div>
-    </div>
-    <div class="container">
+    <div class="continar" >
         <div class="row">
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white">
                     <div class="panel-heading">
                         <h3 class="pt-3 font-weight-bold">
-                            Login
+                            login
                         </h3>
                     </div>
                     <div class="panel-body p-3">
-                        <div class="alert alert-danger" role="alert" *ngIf="alert && alert.length > 0">
-                            {{alert}}
-                          </div>
-                          <div class="alert alert-success" role="alert" *ngIf="success && success.length > 0">
-                            {{success}}
-                          </div>
-                        <form [formGroup]='loginForm'>
+                        <form [formGroup]='loginForm' >
                             <div class="form-group pt-3">
-                                <div class="input-field"
-                                    [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
-                                    <span class="fa fa-user p-2"> </span>
-                                    <input formControlName="username" type="text" placeholder="User Name"
-                                        (input)="loginForm.controls['username'].markAsDirty()">
+                                <div class="input-field"  [class.error]= "loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
+                                    <span class="fa fa-user p-2">  </span>
+                                    <input formControlName="username" type="text" placeholder="User Name" (input)="loginForm.controls['username'].markAsDirty()">
                                 </div>
                             </div>
-                            <small
-                                *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')"
-                                class="text-danger"> Username is required</small>
+                            <small *ngIf= "loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')" class="text-danger"> Username is required</small>
                             <div class="form-group pt-3">
-                                <div class="input-field"
-                                    [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
-                                    <span class="fa fa-lock p-2"> </span>
-                                    <input formControlName="password" [type]="type" placeholder="Password"
-                                        (input)="loginForm.controls['password'].markAsDirty()">
-                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                                <div class="input-field" [class.error]= "loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" >
+                                    <span class="fa fa-lock p-2">     </span>
+                                    <input formControlName= "password" [type]="type" placeholder="Password" (input)="loginForm.controls['password'].markAsDirty()">
+                                    <span (click)= "hideShowPass()" class="fa {{eyeIcon}}"></span>
                                 </div>
                             </div>
-                            <small
-                                *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')"
-                                class="text-danger"> Password is required</small>
-                            <button [disabled]="waiting" (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mt-4 w-100">
-                                Login
+                            <small *ngIf= "loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')"  class="text-danger"> Password is required</small>
+                            <button (click)= "onSubmit()" type="submit" class="btn btn-primary btn-block mt-4 w-100">
+                                    Login
                             </button>
                             <div class="text-center pt-4 text-muted"> Don't have account?
-                                <a id="forget" routerLink="/Signup"> Sign Up</a>
+                                <a id="forget" routerLink="/signup"> Sign Up</a>
                             </div>
                         </form>
                     </div>
