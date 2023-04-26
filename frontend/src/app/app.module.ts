@@ -14,6 +14,7 @@ import { ApiVisualiserComponent } from './components/api-visualiser/api-visualis
 import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
 import { ImagePredictionComponent } from './components/image-prediction/image-prediction.component';
 import { FormComponent } from './components/form/form.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { FormComponent } from './components/form/form.component';
     ApiVisualiserComponent,
     UserWelcomeComponent,
     ImagePredictionComponent,
-    FormComponent
+    FormComponent,
+    SignupComponent,
+
   ],
   imports: [
     BrowserModule,
