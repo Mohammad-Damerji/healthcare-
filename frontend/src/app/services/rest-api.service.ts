@@ -6,7 +6,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 INTERFACES
 */
 export type ApiFun = (_: ApiInput) => Observable<ApiResponse>
-export type ApiInput = ApiLogin | ApiPredict
+export type ApiInput = ApiLogin | ApiPredict | ApiImage
 export interface ApiLogin {
   username: string,
   password: string
@@ -23,7 +23,12 @@ export interface ApiPredict {
     smoking_status: "formerly smoked" | "never smoked" | "smokes" | "Unknown"
 }
 
-export type ApiResponse = RespLogin | RespPredict
+type Base64Image = string
+export interface ApiImage {
+  image: Base64Image
+}
+
+export type ApiResponse = RespLogin | RespPredict | RespImage
 export interface RespLogin {
   success: boolean
   message: string
@@ -34,6 +39,12 @@ export interface RespPredict {
   message: string,
   percentage?: number
 } 
+
+export interface RespImage {
+  success: boolean,
+  message: string,
+  data: string
+}
 
 /*
 IMPLEMENTATION
@@ -104,5 +115,12 @@ export class RestAPIService {
     //return this.getJson("health/predict/stroke/?gender=Male") as Observable<RespPredict> 
     //return this.http.get<ApiResponse>(this.path + "health/predict/stroke/", options)
     return this.postJson(data, "health/predict/heart-disease/") as Observable<RespPredict>
+  }
+
+  public predictImage(base64: Base64Image): Observable<RespImage> {
+    const data = {
+      image: base64
+    } as ApiImage
+    return this.postJson(data, "health/predict/xray/") as Observable<RespImage>
   }
 }
