@@ -6,10 +6,17 @@
         <div class="row">
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white">
+                  <div class="alert alert-success" role="alert" *ngIf="success && success.length > 0">
+                    {{success}}
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="error && error.length > 0">
+                    {{error}}
+                  </div>
                     <div class=" mb-4 border-bottom border-success" style="margin-top: 25px; margin-left: 20px;">
                         <label for="hypertension">Please fill your personal details: </label>  
                       </div>    
                     <div class="panel-body p-3">
+                      
                        
                         <form [formGroup]='formForm' (ngSubmit)="onSubmit()">
 
@@ -28,21 +35,21 @@
                            
 
 
-                              <div class="mb-4" [class.error]= "formForm.controls['Age'].dirty && formForm.hasError('required', 'Age')">
+                              <div class="mb-4" [class.error]= "formForm.controls['age'].dirty && formForm.hasError('required', 'age')">
                                 <label for="exampleFormControlInput1" class="form-label"> </label>
-                                <input type="number" class="form-control border-success" id="Age"  formControlName="Age" min="0" max="100" step="1" placeholder="Age"
-                                (input)="formForm.controls['Age'].markAsDirty()">
+                                <input type="number" class="form-control border-success" id="age"  formControlName="age" min="0" max="100" step="1" placeholder="Age"
+                                (input)="formForm.controls['age'].markAsDirty()">
                               </div>
-                             <small *ngIf= "formForm.controls['Age'].dirty && formForm.hasError('required', 'Age')" class=" error text-danger"> Age is required</small>
+                             <small *ngIf= "formForm.controls['age'].dirty && formForm.hasError('required', 'age')" class=" error text-danger"> age is required</small>
                         
                             <div class="mb-4"> 
                             <label for="hypertension">Do you have hypertension? </label> 
                             <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                <input class="form-check-input" type="radio" name="hypertension"  id="hypertension" value="True" >
+                                <input class="form-check-input" type="radio" name="hypertension" formControlName="hypertension" id="hypertension" value="Yes" >
                                 <label class="form-check-label" for="inlineRadio1">Yes</label>
                               </div>
                                 <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                <input class="form-check-input" type="radio" name="hypertension"  value="false" id="hypertension">
+                                <input class="form-check-input" type="radio" name="hypertension"formControlName="hypertension"  value="No" id="hypertension">
                                 <label class="form-check-label" for="inlineRadio2">No</label>
                               </div>
                             </div>
@@ -50,16 +57,16 @@
                               <div class="mb-4"> 
                               <label for="Heart_disease"> Do you have heart disease? </label> 
                               <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                  <input class="form-check-input" type="radio" name="Heart_disease"  id="Heart_disease" value="True"  >
+                                  <input class="form-check-input" type="radio" name="heart_disease"  id="Heart_disease" formControlName="heart_disease" value="Yes"  >
                                   <label class="form-check-label" for="inlineRadio1">Yes</label>
                                 </div>
                                 <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                  <input class="form-check-input" type="radio" name="Heart_disease"  value="false" id="Heart_disease">
+                                  <input class="form-check-input" type="radio" name="heart_disease" formControlName="heart_disease" value="No" id="Heart_disease">
                                   <label class="form-check-label" for="inlineRadio2">No</label>
                                 </div>
                                 </div>
 
-                                <select class="form-select border-success" aria-label="residence_type"  formControlName="residence_type">
+                                <select class="form-select border-success" aria-label="residence_type"  formControlName="Residence_type">
                                     <option disabled value="" id="residence_type" name="residence_type">Select your Residence type</option>
                                     <option value="Urban">Urban</option>
                                     <option value="Rural">Rural</option>
@@ -87,8 +94,8 @@
                                   </div>
                                   <small *ngIf= "formForm.controls['bmi'].dirty && formForm.hasError('required', 'bmi')" class="text-danger"> BMI is required</small>
 
-                                  <select class="form-select border-success" aria-label=" smoking_status" id="smoking_status" name="smoking_status">
-                                    <option selected>Select your Smoking status</option>
+                                  <select class="form-select border-success" aria-label=" smoking_status" id="smoking_status" name="smoking_status" formControlName="smoking_status">
+                                    <option selected value="default">Select your Smoking status</option>
                                     <option value="formerly smoked">Formerly smoked</option>
                                     <option value="never smoked">Never smoked</option>
                                     <option value="smokes">Smokes</option>
