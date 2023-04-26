@@ -73,8 +73,9 @@ export class LoginComponent implements OnInit {
       
     }else
     {
-      alert("form is not vaild")
       this.validateAllFormFilds(this.loginForm);
+      alert("form is not vaild")
+      
     }
 
   }
