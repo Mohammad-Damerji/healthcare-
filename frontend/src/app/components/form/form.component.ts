@@ -47,19 +47,36 @@ export class FormComponent implements OnInit {
   onSubmit(){
     if(this.formForm.valid){
       console.log(this.formForm.value)
-      this.api.predictStroke(this.formForm.value).subscribe(e => {
+      this.api.predictStroke(this.formForm.value).subscribe(stroke => {
+        console.log(stroke);
+
+        if (stroke.success) {
+          this.success = stroke.message
+        }
+
+        else {
+          this.error += stroke.message
+        }
+        
 
         //after the stroke prediction run another prediction
-        console.log(e);
-
-        if (e.success) {
-          this.error = ""
-          this.success = e.message
-        }
-        else {
-          this.error = e.message
+        /*this.api.predictHeartDisease(this.formForm.value).subscribe(heart => {
+          console.log(heart);
           this.success = ""
-        }
+          this.error = ""
+
+          if (stroke.success && heart.success) {
+            this.success = stroke.message + "\n" + heart.message
+          }
+
+          else {
+            this.error += stroke.success ? "" : stroke.message
+            this.error += heart.success ? "" : heart.message
+          }
+        })*/
+
+
+       
 
       })
     }

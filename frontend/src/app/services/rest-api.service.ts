@@ -91,4 +91,18 @@ export class RestAPIService {
     //return this.http.get<ApiResponse>(this.path + "health/predict/stroke/", options)
     return this.postJson(data, "health/predict/stroke/") as Observable<RespPredict>
   }
+
+  public predictHeartDisease(data: ApiPredict): Observable<RespPredict> {
+    const jsonHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa('test_user1:12345678')
+    })
+    /*const options = {
+      headers: jsonHeaders,
+      params: new HttpParams(data)
+    }*/
+    //return this.getJson("health/predict/stroke/?gender=Male") as Observable<RespPredict> 
+    //return this.http.get<ApiResponse>(this.path + "health/predict/stroke/", options)
+    return this.postJson(data, "health/predict/heart-disease/") as Observable<RespPredict>
+  }
 }
