@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http'
 import { catchError, Observable, throwError } from 'rxjs';
 
 /*
@@ -31,7 +31,8 @@ export interface RespLogin {
 
 export interface RespPredict {
   success: boolean,
-  percentage: number
+  message: string,
+  percentage?: number
 } 
 
 /*
@@ -41,7 +42,10 @@ IMPLEMENTATION
   providedIn: 'root'
 })
 export class RestAPIService {
-  private jsonHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  private jsonHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic ' + btoa('test_user1:12345678')
+  })
   private path = "http://localhost:8000/api/"
 
   constructor(private http: HttpClient) { }
@@ -63,11 +67,28 @@ export class RestAPIService {
     return this.http.post<ApiResponse>(postPath, body, options).pipe(catchError(this.handleError<ApiResponse>))  
   }
 
+  private getJson(getPath: string) {
+    const options ={
+      headers: this.jsonHeaders
+    }
+    return this.http.get<ApiResponse>(getPath, options)
+  }
+
   public login(data: ApiLogin): Observable<RespLogin> {   
     return this.postJson(data, "auth/login/") as Observable<RespLogin>
   }
 
-  public predict(data: ApiPredict): Observable<RespPredict> {
-    return this.postJson(data, "predict/") as Observable<RespPredict> 
+  public predictStroke(data: ApiPredict): Observable<RespPredict> {
+    const jsonHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa('test_user1:12345678')
+    })
+    /*const options = {
+      headers: jsonHeaders,
+      params: new HttpParams(data)
+    }*/
+    //return this.getJson("health/predict/stroke/?gender=Male") as Observable<RespPredict> 
+    //return this.http.get<ApiResponse>(this.path + "health/predict/stroke/", options)
+    return this.postJson(data, "health/predict/stroke/") as Observable<RespPredict>
   }
 }
