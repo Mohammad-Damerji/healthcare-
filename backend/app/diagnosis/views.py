@@ -17,7 +17,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 import base64
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def predict_stroke(request, ):
@@ -62,7 +62,7 @@ def predict_stroke(request, ):
         make_response(True, message=f"There is {result} chance that you will have a stroke.", data=result))
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def predict_heart(request, ):
@@ -100,7 +100,7 @@ def predict_heart(request, ):
                       data=result))
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 # @parser_classes((MultiPartParser, FormParser))
