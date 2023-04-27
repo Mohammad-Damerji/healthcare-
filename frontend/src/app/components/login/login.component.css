@@ -1,9 +1,9 @@
 .outer{
     height: 100vh;
-    background: linear-gradient(to top,#c9c9ff 50%,#6e6ef6 90%) no-repeat;
-
-
+    background: linear-gradient(to top,#f0f8f8 50%,#6eddf6 90%) no-repeat;
 }
+
+
 .panel-heading{
     text-align: center;
     margin-bottom: 10px;
@@ -76,19 +76,15 @@ img{
     position: relative;
 }
 
-.spanner{
-    position:absolute;
-    left: 0;
-    background: #242424aa;
-    width: 100%;
-    display:block;
-    text-align:center;
-    height: 100%;
-    color: #FFF;
-    z-index: 1000;
-    visibility: hidden;
-}
-
-.visible {
-    visibility: visible;
-}
+@font-face {
+    font-family: 'Regular';
+    src: url('src/assets/Fonts/abeezee/ABeeZee-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  h3 {
+    margin-left: 20px;
+    font-family: 'Regular', sans-serif;
+    
+  }

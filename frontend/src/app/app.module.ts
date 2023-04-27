@@ -12,6 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiVisualiserComponent } from './components/api-visualiser/api-visualiser.component';
 import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
+import { ImagePredictionComponent } from './components/image-prediction/image-prediction.component';
+import { FormComponent } from './components/form/form.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,11 @@ import { UserWelcomeComponent } from './components/user-welcome/user-welcome.com
     BlogComponent,
     LoginComponent,
     ApiVisualiserComponent,
-    UserWelcomeComponent
+    UserWelcomeComponent,
+    ImagePredictionComponent,
+    FormComponent,
+    SignupComponent,
+
   ],
   imports: [
     BrowserModule,
