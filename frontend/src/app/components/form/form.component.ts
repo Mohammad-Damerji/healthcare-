@@ -11,32 +11,38 @@ export class FormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.formForm = this.fb.group({
-      Age: ['', Validators.required],
-      bmi: ['', Validators.required],
-      avg_glucose_level: ['', Validators.required],
-      gender: ['', Validators.required],
-      residence_type : ['', Validators.required]
-    });
-  }
- 
   get gender() {
     return this.formForm.get('gender');
   }
-
-  get residence_type (){
-    return this.formForm.get('residence_type');
-
+  
+  get RestingBP (){
+    return this.formForm.get('RestingBP');
   }
+
+  get FastingBS (){
+    return this.formForm.get('FastingBS');
+  }
+  
+  ngOnInit(): void {
+    this.formForm = this.fb.group({
+      Age: ['', Validators.required],
+      Chest_Pain_Type: ['', Validators.required],
+      RestingBP: ['', Validators.required],
+      gender: ['', Validators.required],
+      FastingBS: ['', Validators.required]
+    });
+  }
+  
+ 
 
   onSubmit(){
     if(this.formForm.valid){
       console.log(this.formForm.value)
     }else
     {
-      alert("form is vaild")
       this.validateAllFormFilds(this.formForm);
+      alert("form is not vaild")
+     
     }
 
   }

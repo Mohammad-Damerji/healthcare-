@@ -17,15 +17,12 @@
                                 <option disabled value="">Select your gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                               
                             </select>
-                           
 
                             <div *ngIf="formForm.get('gender')?.invalid && (formForm.get('gender')?.dirty || formForm.get('gender')?.touched)" class="text-danger">
                              Gender is required
                            </div>
-  
-                           
 
 
                               <div class="mb-4" [class.error]= "formForm.controls['Age'].dirty && formForm.hasError('required', 'Age')">
@@ -35,69 +32,50 @@
                               </div>
                              <small *ngIf= "formForm.controls['Age'].dirty && formForm.hasError('required', 'Age')" class=" error text-danger"> Age is required</small>
                         
-                            <div class="mb-4"> 
-                            <label for="hypertension">Do you have hypertension? </label> 
-                            <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                <input class="form-check-input" type="radio" name="hypertension"  id="hypertension" value="True" >
-                                <label class="form-check-label" for="inlineRadio1">Yes</label>
-                              </div>
-                                <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                <input class="form-check-input" type="radio" name="hypertension"  value="false" id="hypertension">
-                                <label class="form-check-label" for="inlineRadio2">No</label>
-                              </div>
-                            </div>
-                              
-                              <div class="mb-4"> 
-                              <label for="Heart_disease"> Do you have heart disease? </label> 
-                              <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                  <input class="form-check-input" type="radio" name="Heart_disease"  id="Heart_disease" value="True"  >
-                                  <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline" style="margin-left: 50px;">
-                                  <input class="form-check-input" type="radio" name="Heart_disease"  value="false" id="Heart_disease">
-                                  <label class="form-check-label" for="inlineRadio2">No</label>
-                                </div>
-                                </div>
 
-                                <select class="form-select border-success" aria-label="residence_type"  formControlName="residence_type">
-                                    <option disabled value="" id="residence_type" name="residence_type">Select your Residence type</option>
-                                    <option value="Urban">Urban</option>
-                                    <option value="Rural">Rural</option>
-                                  </select>
-                                  <div *ngIf="formForm.get('residence_type')?.invalid && (formForm.get('residence_type')?.dirty || formForm.get('residence_type')?.touched)" class="text-danger">
-                                    Your Residence type is required
-                                  </div>
+                                <select class="form-select border-success" aria-label="Chest_Pain_Type"  id="Chest_Pain_Type"  formControlName="Chest_Pain_Type" >
+                                    <option disabled value="">Select Chest Pain Type</option>
+                                    <option value="Atypical angina">Atypical angina</option>
+                                    <option value="Non-anginal pain">Non-anginal pain</option>
+                                    <option value="Asymptomatic">Asymptomatic</option>
+                                    <option value="Typical angina">Typical angina</option>
+                                   
+                                </select>
+    
+                                <div *ngIf="formForm.get('Chest_Pain_Type')?.invalid && (formForm.get('Chest_Pain_Type')?.dirty || formForm.get('Chest_Pain_Type')?.touched)" class="text-danger">
+                                  Chest Pain Type is required
+                               </div>
 
 
 
-
-                               <div [class.error]= "formForm.controls['avg_glucose_level'].dirty && formForm.hasError('required', 'avg_glucose_level')">
+                               <div [class.error]= "formForm.controls['RestingBP'].dirty && formForm.hasError('required', 'RestingBP')">
                                     <label for="exampleFormControlInput1" class="form-label"> </label>
-                                    <input type="number" class="form-control border-success" id="avg_glucose_level"  formControlName="avg_glucose_level" placeholder="Average glucose level"
-                                    (input)="formForm.controls['avg_glucose_level'].markAsDirty()">
+                                    <input type="number" class="form-control border-success" id="RestingBP"  formControlName="RestingBP" placeholder="Resting Blood Pressure"
+                                    (input)="formForm.controls['RestingBP'].markAsDirty()">
                                 </div>
 
-                                <small *ngIf= "formForm.controls['avg_glucose_level'].dirty && formForm.hasError('required', 'avg_glucose_level')" class="text-danger"> Average glucose level is required</small>
+                                <small *ngIf= "formForm.controls['RestingBP'].dirty && formForm.hasError('required', 'RestingBP')" class="text-danger"> Resting Blood Pressure is required</small>
                                 
 
-                                  <div class="mb-4"  [class.error]= "formForm.controls['bmi'].dirty && formForm.hasError('required', 'bmi')">
+                                  <div class="mb-4"  [class.error]= "formForm.controls['FastingBS'].dirty && formForm.hasError('required', 'FastingBS')">
                                     <label for="exampleFormControlInput1" class="form-label"> </label>
-                                    <input type="number" class="form-control border-success" id="bmi"  formControlName="bmi" step="1" placeholder=" BMI index"
-                                    (input)="formForm.controls['bmi'].markAsDirty()">
+                                    <input type="number" class="form-control border-success" id="FastingBS"  formControlName="FastingBS" step="1" placeholder=" Fasting Blood sugar"
+                                    (input)="formForm.controls['FastingBS'].markAsDirty()">
                                   </div>
-                                  <small *ngIf= "formForm.controls['bmi'].dirty && formForm.hasError('required', 'bmi')" class="text-danger"> BMI is required</small>
+                                  <small *ngIf= "formForm.controls['FastingBS'].dirty && formForm.hasError('required', 'FastingBS')" class="text-danger"> Fasting Blood sugar is required</small>
 
-                                  <select class="form-select border-success" aria-label=" smoking_status" id="smoking_status" name="smoking_status">
-                                    <option selected>Select your Smoking status</option>
-                                    <option value="formerly smoked">Formerly smoked</option>
-                                    <option value="never smoked">Never smoked</option>
-                                    <option value="smokes">Smokes</option>
-                                    <option value="Unknown">Unknown</option>
+                                  <select class="form-select border-success" aria-label=" RestingECG" id="RestingECG" name="RestingECG">
+                                    <option selected>Select your Resting ECG status</option>
+                                    <option value=" Normal">Normal </option>
+                                    <option value="ST"> ST </option>
+                                    <option value="LVH">LVH </option>
+                                    
                                   </select>
 
-                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100">
-                                Predict
-                        </button>
+                                  <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="onSubmit()">
+                                    Predict
+                                </button>
+                                
                             
                           </form>
 
