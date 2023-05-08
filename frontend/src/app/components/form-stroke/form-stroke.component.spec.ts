@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FromHdComponent } from './form-hd.component';
+import { FormStrokeComponent } from './form-stroke.component';
 
 describe('FormComponent', () => {
-  let component: FromHdComponent;
-  let fixture: ComponentFixture<FromHdComponent>;
+  let component: FormStrokeComponent;
+  let fixture: ComponentFixture<FormStrokeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FromHdComponent ]
+      declarations: [ FormStrokeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FromHdComponent);
+    fixture = TestBed.createComponent(FormStrokeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

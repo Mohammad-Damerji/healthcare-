@@ -5,10 +5,10 @@ import { RestAPIService } from 'src/app/services/rest-api.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  templateUrl: './form-stroke.component.html',
+  styleUrls: ['./form-stroke.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormStrokeComponent implements OnInit {
   formForm!: FormGroup;
   success: string;
   error: string;

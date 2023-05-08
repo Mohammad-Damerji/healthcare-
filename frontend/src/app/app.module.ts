@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiVisualiserComponent } from './components/api-visualiser/api-visualiser.component';
 import { UserWelcomeComponent } from './components/user-welcome/user-welcome.component';
 import { ImagePredictionComponent } from './components/image-prediction/image-prediction.component';
-import { FormComponent } from './components/form-stroke/form.component';
+import { FormStrokeComponent } from './components/form-stroke/form-stroke.component';
 import { FromHdComponent } from './components/form-hd/form-hd.component';
 import { SignupComponent } from './components/signup/signup.component';
 
