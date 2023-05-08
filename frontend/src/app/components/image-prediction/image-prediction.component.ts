@@ -54,6 +54,8 @@ export class ImagePredictionComponent {
           this.error = e.message
           this.success = ""
         }
+
+        alert(e.message)
         
       })
     }
