@@ -29,6 +29,7 @@ import { SignupComponent } from './components/signup/signup.component';
     UserWelcomeComponent,
     ImagePredictionComponent,
     FromHdComponent,
+    FormStrokeComponent,
     SignupComponent,
 
   ],
