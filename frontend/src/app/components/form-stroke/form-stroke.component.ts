@@ -57,6 +57,8 @@ export class FormStrokeComponent implements OnInit {
         else {
           this.error += stroke.message
         }
+
+        alert(stroke.message)
         
 
         //after the stroke prediction run another prediction

@@ -40,7 +40,11 @@ export class FromHdComponent implements OnInit {
   onSubmit() {
     if (this.formForm.valid) {
       console.log(this.formForm.value)
-      this.api.predictHeartDisease(this.formForm.value).subscribe(e => console.log("a", e));
+      this.api.predictHeartDisease(this.formForm.value).subscribe(e => {
+        alert(e.message)
+      }
+
+      );
       
     } else {
       this.validateAllFormFilds(this.formForm);
