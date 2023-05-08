@@ -1,0 +1,16 @@
+.spanner{
+    position:absolute;
+    left: 0;
+    background: #242424aa;
+    width: 100%;
+    display:block;
+    text-align:center;
+    height: 100%;
+    color: #FFF;
+    z-index: 1000;
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
