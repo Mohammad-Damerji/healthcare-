@@ -76,6 +76,7 @@ img{
     position: relative;
 }
 
+
 @font-face {
     font-family: 'Regular';
     src: url('src/assets/Fonts/abeezee/ABeeZee-Regular.otf') format('opentype');
