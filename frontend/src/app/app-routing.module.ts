@@ -46,8 +46,13 @@ const routes: Routes = [
   },
 
   {
-    path:"form",
+    path:"form-hd",
     component: FromHdComponent
+  },
+
+  {
+    path:"form-stroke",
+    component: FormStrokeComponent
   }
 ];
 
