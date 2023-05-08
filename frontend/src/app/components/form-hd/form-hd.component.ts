@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RestAPIService } from 'src/app/services/rest-api.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form-hd.component.html',
@@ -9,7 +10,7 @@ export class FromHdComponent implements OnInit {
   formForm!: FormGroup;
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private api: RestAPIService) { }
 
   get Sex() {
     return this.formForm.get('Sex');
@@ -39,6 +40,8 @@ export class FromHdComponent implements OnInit {
   onSubmit() {
     if (this.formForm.valid) {
       console.log(this.formForm.value)
+      this.api.predictHeartDisease(this.formForm.value).subscribe(e => console.log("a", e));
+      
     } else {
       this.validateAllFormFilds(this.formForm);
       alert("form is not vaild")
