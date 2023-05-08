@@ -57,16 +57,24 @@
                                 <small *ngIf= "formForm.controls['RestingBP'].dirty && formForm.hasError('required', 'RestingBP')" class="text-danger"> Resting Blood Pressure is required</small>
                                 
 
-                                  <div class="mb-4"  [class.error]= "formForm.controls['FastingBS'].dirty && formForm.hasError('required', 'FastingBS')">
+                                  <!--<div class="mb-4"  [class.error]= "formForm.controls['FastingBS'].dirty && formForm.hasError('required', 'FastingBS')">
                                     <label for="exampleFormControlInput1" class="form-label"> </label>
                                     <input type="number" class="form-control border-success" id="FastingBS"  formControlName="FastingBS" step="1" placeholder=" Fasting Blood sugar"
                                     (input)="formForm.controls['FastingBS'].markAsDirty()">
-                                  </div>
+                                  </div>-->
+                                  
+                                  <select class="mb-4 mt-4 form-select border-success" aria-label=" FastingBS" id="FastingBS" name="FastingBS" formControlName="FastingBS">
+                                    <option selected value="">Fasting Blood Sugar</option>
+                                    <option value="1"> > 120 mg/dl </option>
+                                    <option value="0"> <= 120 mg/dl </option>                                    
+                                  </select>
+                                  
+
                                   <small *ngIf= "formForm.controls['FastingBS'].dirty && formForm.hasError('required', 'FastingBS')" class="text-danger"> Fasting Blood sugar is required</small>
 
                                   <select class="form-select border-success" aria-label=" RestingECG" id="RestingECG" name="RestingECG" formControlName="RestingECG">
-                                    <option selected>Select your Resting ECG status</option>
-                                    <option value=" Normal">Normal </option>
+                                    <option selected value="">Select your Resting ECG status</option>
+                                    <option value="Normal">Normal </option>
                                     <option value="ST"> ST </option>
                                     <option value="LVH">LVH </option>
                                     
