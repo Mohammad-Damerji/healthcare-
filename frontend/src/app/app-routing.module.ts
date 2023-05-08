@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApiVisualiserComponent } from './components/api-visualiser/api-visualiser.component';
 import { BlogComponent } from './components/blog/blog.component';
-import { FormComponent } from './components/form/form.component';
+import { FromHdComponent } from './components/form-hd/form-hd.component';
 import { HomeComponent } from './components/home/home.component';
 import { ImagePredictionComponent } from './components/image-prediction/image-prediction.component';
 import { LoginComponent } from './components/login/login.component';
@@ -46,7 +46,7 @@ const routes: Routes = [
 
   {
     path:"form",
-    component: FormComponent
+    component: FromHdComponent
   }
 ];
 

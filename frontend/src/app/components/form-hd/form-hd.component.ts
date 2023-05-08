@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  templateUrl: './form-hd.component.html',
+  styleUrls: ['./form-hd.component.css']
 })
-export class FormComponent implements OnInit {
+export class FromHdComponent implements OnInit {
   formForm!: FormGroup;
 
 
