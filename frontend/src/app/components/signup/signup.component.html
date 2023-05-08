@@ -11,33 +11,20 @@
                     <div class="panel-body p-3">
                         <form [formGroup]='signupForm' >
                             <div class="form-group pt-3">
-                                <div class="input-field"  [class.error]= "signupForm.controls['FirstName'].dirty && signupForm.hasError('required', 'FirstName')">
-                                    <span class="fa fa-user p-2">  </span>
-                                    <input formControlName="FirstName" type="text" placeholder="First Name" (input)="signupForm.controls['FirstName'].markAsDirty()">
-                                </div>
-                            </div>
-                            <small *ngIf= "signupForm.controls['FirstName'].dirty && signupForm.hasError('required', 'FirstName')" class="text-danger"> First Name is required</small>
-                            <div class="form-group pt-3">
-                                <div class="input-field"  [class.error]= "signupForm.controls['LastName'].dirty && signupForm.hasError('required', 'LastName')">
-                                    <span class="fa fa-user p-2">  </span>
-                                    <input formControlName="LastName" type="text" placeholder="Last Name" (input)="signupForm.controls['LastName'].markAsDirty()">
-                                </div>
-                            </div>
-                            <small *ngIf= "signupForm.controls['LastName'].dirty && signupForm.hasError('required', 'LastName')" class="text-danger"> Last Name is required</small>
-                            <div class="form-group pt-3">
-                                <div class="input-field"  [class.error]= "signupForm.controls['Email'].dirty && signupForm.hasError('required', 'Email')">
-                                    <span class="fa fa-envelope p-2">  </span>
-                                    <input formControlName="Email" type="text" placeholder="Email" (input)="signupForm.controls['Email'].markAsDirty()">
-                                </div>
-                            </div>
-                            <small *ngIf= "signupForm.controls['Email'].dirty && signupForm.hasError('required', 'Email')" class="text-danger"> Email is required</small>
-                            <div class="form-group pt-3">
                                 <div class="input-field"  [class.error]= "signupForm.controls['username'].dirty && signupForm.hasError('required', 'username')">
                                     <span class="fa fa-user p-2">  </span>
                                     <input formControlName="username" type="text" placeholder="User Name" (input)="signupForm.controls['username'].markAsDirty()">
                                 </div>
                             </div>
                             <small *ngIf= "signupForm.controls['username'].dirty && signupForm.hasError('required', 'username')" class="text-danger"> Username is required</small>
+                           
+                            <div class="form-group pt-3">
+                                <div class="input-field"  [class.error]= "signupForm.controls['phonenumber'].dirty && signupForm.hasError('required', 'phonenumber')">
+                                    <span class="fa fa-phone p-2" aria-hidden="true">  </span>
+                                    <input formControlName="phonenumber" type="text" placeholder="Phone Number" (input)="signupForm.controls['phonenumber'].markAsDirty()">
+                                </div>
+                            </div>
+                            <small *ngIf= "signupForm.controls['phonenumber'].dirty && signupForm.hasError('required', 'phonenumber')" class="text-danger"> Phone Number is required</small>
                            
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]= "signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')" >
@@ -47,6 +34,17 @@
                                 </div>
                             </div>
                             <small *ngIf= "signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')"  class="text-danger"> Password is required</small>
+                            <div class="form-group pt-3"></div>
+                            <div class="input-field" [class.error]= "signupForm.controls['confirmPassword'].dirty && signupForm.hasError('required', 'confirmPassword')" >
+                                <span class="fa fa-lock p-2">     </span>
+                                <input formControlName= "confirmPassword" [type]="type" placeholder="confirmPassword" (input)="signupForm.controls['confirmPassword'].markAsDirty()">
+                                <span (click)= "hideShowPass()" class="fa {{eyeIcon}}"></span>
+                            </div>
+                           
+                        <small *ngIf= "signupForm.controls['confirmPassword'].dirty && signupForm.hasError('required', 'confirmPassword')"  class="text-danger"> confirmPassword is required</small>
+                        <small *ngIf="signupForm.controls['confirmPassword'].dirty && !passwordsMatch()" class="text-danger">
+                            Passwords must match
+                          </small>   
                             <button (click)= "onSubmit()" type="submit" class="btn btn-primary btn-block mt-4 w-100">
                                     Sign Up
                             </button>

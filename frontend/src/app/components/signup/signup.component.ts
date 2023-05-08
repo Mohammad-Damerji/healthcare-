@@ -16,11 +16,11 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
       Email: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+      phonenumber: ['', Validators.required]
     });
   }
 
@@ -30,8 +30,18 @@ export class SignupComponent implements OnInit {
     this.isText ? this.type = "text" : this.type = "password";
   }
 
+  passwordsMatch() {
+    const password = this.signupForm.controls['password'].value;
+    const confirmPassword = this.signupForm.controls['confirmPassword'].value;
+    return password === confirmPassword;
+  }
+
   onSubmit(){
-    if(this.signupForm.valid){
+    if (!this.passwordsMatch()) {
+      alert('Passwords must match');
+      return;
+    }
+    else if(this.signupForm.valid){
       console.log(this.signupForm.value)
     }else
     {    
