@@ -11,16 +11,16 @@
                       </div>    
                     <div class="panel-body p-3">
                        
-                        <form [formGroup]='formForm'>
+                        <form [formGroup]='formForm' (onSubmit)="onSubmit()">
 
-                            <select class="form-select border-success" aria-label="Gender"  id="gender"  formControlName="gender" >
-                                <option disabled value="">Select your gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                            <select class="form-select border-success" aria-label="Gender"  id="Sex"  formControlName="Sex" >
+                                <option disabled value="">Select your Sex</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
                                
                             </select>
 
-                            <div *ngIf="formForm.get('gender')?.invalid && (formForm.get('gender')?.dirty || formForm.get('gender')?.touched)" class="text-danger">
+                            <div *ngIf="formForm.get('Sex')?.invalid && (formForm.get('Sex')?.dirty || formForm.get('Sex')?.touched)" class="text-danger">
                              Gender is required
                            </div>
 
@@ -33,7 +33,7 @@
                              <small *ngIf= "formForm.controls['Age'].dirty && formForm.hasError('required', 'Age')" class=" error text-danger"> Age is required</small>
                         
 
-                                <select class="form-select border-success" aria-label="Chest_Pain_Type"  id="Chest_Pain_Type"  formControlName="Chest_Pain_Type" >
+                                <select class="form-select border-success" aria-label="ChestPainType"  id="ChestPainType"  formControlName="ChestPainType" >
                                     <option disabled value="">Select Chest Pain Type</option>
                                     <option value="Atypical angina">Atypical angina</option>
                                     <option value="Non-anginal pain">Non-anginal pain</option>
@@ -42,7 +42,7 @@
                                    
                                 </select>
     
-                                <div *ngIf="formForm.get('Chest_Pain_Type')?.invalid && (formForm.get('Chest_Pain_Type')?.dirty || formForm.get('Chest_Pain_Type')?.touched)" class="text-danger">
+                                <div *ngIf="formForm.get('ChestPainType')?.invalid && (formForm.get('ChestPainType')?.dirty || formForm.get('ChestPainType')?.touched)" class="text-danger">
                                   Chest Pain Type is required
                                </div>
 
@@ -64,7 +64,7 @@
                                   </div>
                                   <small *ngIf= "formForm.controls['FastingBS'].dirty && formForm.hasError('required', 'FastingBS')" class="text-danger"> Fasting Blood sugar is required</small>
 
-                                  <select class="form-select border-success" aria-label=" RestingECG" id="RestingECG" name="RestingECG">
+                                  <select class="form-select border-success" aria-label=" RestingECG" id="RestingECG" name="RestingECG" formControlName="RestingECG">
                                     <option selected>Select your Resting ECG status</option>
                                     <option value=" Normal">Normal </option>
                                     <option value="ST"> ST </option>

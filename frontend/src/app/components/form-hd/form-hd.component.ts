@@ -11,48 +11,48 @@ export class FromHdComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  get gender() {
-    return this.formForm.get('gender');
+  get Sex() {
+    return this.formForm.get('Sex');
   }
-  
-  get RestingBP (){
+
+  get RestingBP() {
     return this.formForm.get('RestingBP');
   }
 
-  get FastingBS (){
+  get FastingBS() {
     return this.formForm.get('FastingBS');
   }
-  
+
   ngOnInit(): void {
     this.formForm = this.fb.group({
       Age: ['', Validators.required],
-      Chest_Pain_Type: ['', Validators.required],
+      ChestPainType: ['', Validators.required],
       RestingBP: ['', Validators.required],
-      gender: ['', Validators.required],
-      FastingBS: ['', Validators.required]
+      Sex: ['', Validators.required],
+      FastingBS: ['', Validators.required],
+      RestingECG: ['', Validators.required]
     });
   }
-  
- 
 
-  onSubmit(){
-    if(this.formForm.valid){
+
+
+  onSubmit() {
+    if (this.formForm.valid) {
       console.log(this.formForm.value)
-    }else
-    {
+    } else {
       this.validateAllFormFilds(this.formForm);
       alert("form is not vaild")
-     
+
     }
 
   }
 
-  private validateAllFormFilds(formGroup:FormGroup){
-    Object.keys(formGroup.controls).forEach(field=>{
+  private validateAllFormFilds(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if(control instanceof FormControl){
-        control.markAsDirty({onlySelf:true});
-      }else if (control instanceof FormGroup) {
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
         this.validateAllFormFilds(control)
       }
     })
