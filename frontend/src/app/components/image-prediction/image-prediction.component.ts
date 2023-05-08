@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ImagePredictionComponent {
   uploadForm!: FormGroup;
   url = "./assets/images/upload.png";
+  waiting = false;
   userSelected = false
   success = ""
   error = ""
@@ -41,7 +42,9 @@ export class ImagePredictionComponent {
   onSubmit() {
     if (this.userSelected) {
       console.log("User selected a file.");
+      this.waiting = true;
       this.api.predictImage(this.url).subscribe(e => {
+        this.waiting = false
         if (e.success) {
           this.error = ""
           this.success = e.message
