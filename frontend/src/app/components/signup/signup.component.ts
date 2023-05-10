@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RestAPIService } from 'src/app/services/rest-api.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,13 +13,12 @@ export class SignupComponent implements OnInit {
   eyeIcon: string = "fa-eye-slash";
   signupForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private api: RestAPIService) { }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      Email: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required]],
       confirmPassword: ['', Validators.required],
       phonenumber: ['', Validators.required]
     });
@@ -36,13 +36,30 @@ export class SignupComponent implements OnInit {
     return password === confirmPassword;
   }
 
-  onSubmit(){
+  onSubmit(){    
     if (!this.passwordsMatch()) {
       alert('Passwords must match');
       return;
     }
     else if(this.signupForm.valid){
       console.log(this.signupForm.value)
+      let a = {
+        "email": "noemail@noemail.com",
+        "username": this.signupForm.get("username")?.value,
+        "password": this.signupForm.get("password")?.value,
+        "phone_number": this.signupForm.get("phonenumber")?.value,
+        "gender": "male",
+        "birth_date": "1990-01-01",
+        "first_name":"John",
+        "last_name":"Doe"
+    }
+    let b =  {
+    "username": this.signupForm.get("username")?.value,
+    "phone_number": this.signupForm.get("phonenumber")?.value,
+    "password": this.signupForm.get("password")?.value
+  }
+      this.api.signup(a).subscribe(e => {console.log(JSON.stringify(e.message)); alert(e.message) //TODO: types and server response
+      })
     }else
     {    
       this.validateAllFormFilds(this.signupForm);

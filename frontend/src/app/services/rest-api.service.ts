@@ -85,8 +85,16 @@ export class RestAPIService {
     return this.http.get<ApiResponse>(getPath, options)
   }
 
-  public login(data: ApiLogin): Observable<RespLogin> {   
+  public login(data: ApiLogin): Observable<RespLogin> {  
+    console.log(data);
+     
     return this.postJson(data, "auth/login/") as Observable<RespLogin>
+  }
+
+  public signup(data: any): Observable<any> {
+    console.log(data);
+    
+    return this.postJson(data, "auth/signup/") as Observable<any>
   }
 
   public predictStroke(data: ApiPredict): Observable<RespPredict> {
