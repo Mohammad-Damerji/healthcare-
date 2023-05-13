@@ -11,15 +11,15 @@ clean: clean-backend clean-frontend
 
 serve:
 	cd frontend && npm install
-	cd frontend && ng serve
+	cd frontend && npm run ng serve
 
 .PHONY: backend
 
 backend:
 	cd backend && pip3 install -r requirements.txt
-	cd backend/app && python3 manage.py makemigrations
-	cd backend/app && python3 manage.py migrate
-	cd backend/app && python3 manage.py runserver
+	cd backend/app && python manage.py makemigrations
+	cd backend/app && python manage.py migrate
+	cd backend/app && python manage.py runserver
 
 conn-check:
 	nc -z localhost 8000

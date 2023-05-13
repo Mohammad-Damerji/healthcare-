@@ -9,7 +9,7 @@ class Profile(models.Model):
         ('female', 'Female'),
     ]
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, null=True)
-    phone_number = models.CharField(max_length=12, unique=True)
+    phone_number = models.CharField(max_length=12, unique=False)
     birth_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
