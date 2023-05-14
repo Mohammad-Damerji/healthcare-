@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RestAPIService } from 'src/app/services/rest-api.service';
+import { ApiSignup, RestAPIService } from 'src/app/services/rest-api.service';
 
 @Component({
   selector: 'app-signup',
@@ -36,45 +36,46 @@ export class SignupComponent implements OnInit {
     return password === confirmPassword;
   }
 
-  onSubmit(){    
+  onSubmit() {
     if (!this.passwordsMatch()) {
       alert('Passwords must match');
       return;
     }
-    else if(this.signupForm.valid){
+    else if (this.signupForm.valid) {
       console.log(this.signupForm.value)
-      let a = {
-        "email": "noemail@noemail.com",
-        "username": this.signupForm.get("username")?.value,
-        "password": this.signupForm.get("password")?.value,
-        "phone_number": this.signupForm.get("phonenumber")?.value,
-        "gender": "male",
-        "birth_date": "1990-01-01",
-        "first_name":"John",
-        "last_name":"Doe"
-    }
-    let b =  {
-    "username": this.signupForm.get("username")?.value,
-    "phone_number": this.signupForm.get("phonenumber")?.value,
-    "password": this.signupForm.get("password")?.value
-  }
-      this.api.signup(a).subscribe(e => {console.log(JSON.stringify(e.message)); alert(e.message) //TODO: types and server response
+      let fullData: ApiSignup = {
+        email: "noemail@noemail.com",
+        username: this.signupForm.get("username")?.value,
+        password: this.signupForm.get("password")?.value,
+        phone_number: this.signupForm.get("phonenumber")?.value,
+        gender: "male",
+        birth_date: "1990-01-01",
+        first_name: "John",
+        last_name: "Doe"
+      }
+
+      this.api.signup(fullData).subscribe(e => {
+        if (e.success) {
+          alert("Successful registration!")
+        }
+        else {
+          alert(e.errors[0])
+        }
       })
-    }else
-    {    
-      this.validateAllFormFilds(this.signupForm);
-      alert("Your form is invaild")
+    } else {
+      this.validateAllFormFields(this.signupForm);
+      alert("Your form is not valid")
     }
 
   }
 
-  private validateAllFormFilds(signupForm:FormGroup){
-    Object.keys(signupForm.controls).forEach(field=>{
+  private validateAllFormFields(signupForm: FormGroup) {
+    Object.keys(signupForm.controls).forEach(field => {
       const control = signupForm.get(field);
-      if(control instanceof FormControl){
-        control.markAsDirty({onlySelf:true});
-      }else if (control instanceof FormGroup) {
-        this.validateAllFormFilds(control)
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control)
       }
     })
   }

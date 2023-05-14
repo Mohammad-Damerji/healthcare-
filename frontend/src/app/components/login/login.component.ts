@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
     this.loginForm.get('password')?.enable()
   }
 
-  onSubmit(){
-    if(this.loginForm.valid){
+  onSubmit() {
+    if (this.loginForm.valid) {
       console.log(this.loginForm.value)
       this.setSpinner()
       this.api.login(this.loginForm.value).subscribe(e => {
@@ -67,26 +67,25 @@ export class LoginComponent implements OnInit {
           this.alert = e.message
           this.success = undefined
         }
-        
+
       });
-      
-      
-    }else
-    {
-      this.validateAllFormFilds(this.loginForm);
+
+
+    } else {
+      this.validateAllFormFields(this.loginForm);
       alert("form is not vaild")
-      
+
     }
 
   }
 
-  private validateAllFormFilds(formGroup:FormGroup){
-    Object.keys(formGroup.controls).forEach(field=>{
+  private validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if(control instanceof FormControl){
-        control.markAsDirty({onlySelf:true});
-      }else if (control instanceof FormGroup) {
-        this.validateAllFormFilds(control)
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control)
       }
     })
   }

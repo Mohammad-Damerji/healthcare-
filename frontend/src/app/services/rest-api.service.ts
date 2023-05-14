@@ -6,7 +6,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 INTERFACES
 */
 export type ApiFun = (_: ApiInput) => Observable<ApiResponse>
-export type ApiInput = ApiLogin | ApiPredict | ApiImage
+export type ApiInput = ApiLogin | ApiPredict | ApiImage | ApiSignup
 export interface ApiLogin {
   username: string,
   password: string
@@ -28,6 +28,17 @@ export interface ApiImage {
   image: Base64Image
 }
 
+export interface ApiSignup {
+    email: string,
+    username: string,
+    password: string,
+    phone_number: string,
+    gender: "male" | "female",
+    birth_date: string,
+    first_name: string,
+    last_name: string,
+}
+
 export type ApiResponse = RespLogin | RespPredict | RespImage
 export interface RespLogin {
   success: boolean
@@ -46,6 +57,10 @@ export interface RespImage {
   data: string
 }
 
+export interface RespSignup {
+  success: boolean,
+  message?: string
+}
 /*
 IMPLEMENTATION
 */
@@ -91,37 +106,15 @@ export class RestAPIService {
     return this.postJson(data, "auth/login/") as Observable<RespLogin>
   }
 
-  public signup(data: any): Observable<any> {
-    console.log(data);
-    
-    return this.postJson(data, "auth/signup/") as Observable<any>
+  public signup(data: ApiSignup): Observable<any> {    
+    return this.postJson(data, "auth/signup/") as Observable<RespSignup>
   }
 
   public predictStroke(data: ApiPredict): Observable<RespPredict> {
-    const jsonHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + btoa('test_user1:12345678')
-    })
-    /*const options = {
-      headers: jsonHeaders,
-      params: new HttpParams(data)
-    }*/
-    //return this.getJson("health/predict/stroke/?gender=Male") as Observable<RespPredict> 
-    //return this.http.get<ApiResponse>(this.path + "health/predict/stroke/", options)
     return this.postJson(data, "health/predict/stroke/") as Observable<RespPredict>
   }
 
   public predictHeartDisease(data: ApiPredict): Observable<RespPredict> {
-    const jsonHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + btoa('test_user1:12345678')
-    })
-    /*const options = {
-      headers: jsonHeaders,
-      params: new HttpParams(data)
-    }*/
-    //return this.getJson("health/predict/stroke/?gender=Male") as Observable<RespPredict> 
-    //return this.http.get<ApiResponse>(this.path + "health/predict/stroke/", options)
     return this.postJson(data, "health/predict/heart-disease/") as Observable<RespPredict>
   }
 
