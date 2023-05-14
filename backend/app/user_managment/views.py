@@ -30,6 +30,7 @@ class SignUpView(generics.GenericAPIView):
         username = request.data.get("username") or request.data.get("email")
         first_name = request.data.get("first_name")
         last_name = request.data.get("last_name")
+
         try:
             user = User.objects.create_user(username, email=email, password=password, first_name=first_name,
                                             last_name=last_name)
